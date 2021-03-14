@@ -18,9 +18,8 @@ io.on('connection', (socket) => {
 
 io.sockets.on('connection', function(socket){
 
-   socket.on('user image',function(image){
-       io.sockets.emit('addimage',' ', image);
-       console.log('epale menor');
+   socket.on('user image',function(image,user){
+       io.sockets.emit('addimage',user, image);
    });
 });
 

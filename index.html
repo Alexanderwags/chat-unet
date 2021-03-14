@@ -314,11 +314,15 @@
             window.scrollTo(0, document.body.scrollHeight);
         });
 
-        socket.on('addimage', function(msg, base64image) {
+        socket.on('addimage', function(base64image,msg) {
+            var today = new Date();
 
-            $('#messages').append(
-                $('<p>').append($('<b>').text(msg), '<a target="_blank" href="' + base64image + '"><img src="' + base64image + '" /></a>')
-            );
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            if (msg == persona) {
+                $('#messages').append('<div class="balon1 p-2 m-0 position-relative" data-is="Tu - '+time+'"><a class="float-right" target="_blank" href="' + base64image + '"><img src="' + base64image + '" /></a></div>');
+            }else{
+                $('#messages').append('<div class="balon2 p-2 m-0 position-relative" data-is="'+msg+' - '+time+'"><a class="float-left sohbet2" target="_blank" href="' + base64image + '"><img src="' + base64image + '" /></a></div>');
+            }
         });
 
         $(function() {
@@ -327,7 +331,7 @@
                 var reader = new FileReader();
                 reader.onload = function(evt) {
                     console.log(evt);
-                    socket.emit('user image', evt.target.result)
+                    socket.emit('user image',persona ,evt.target.result)
                 };
                 reader.readAsDataURL(file);
             })

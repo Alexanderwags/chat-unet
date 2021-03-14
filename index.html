@@ -84,12 +84,10 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
+        var persona = "Sin Nombre";
         function ingresarNombre() {
           var nombre_persona;
-          var persona = prompt("Ingrese su nombre:", "");
-          if (persona == null || persona == "") {
-            nombre_persona = "Sin Nombre";
-          }
+          persona = prompt("Ingrese su nombre:", "");
         }
 
         ingresarNombre();
